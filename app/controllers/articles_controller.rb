@@ -5,6 +5,7 @@ class ArticlesController < ApplicationController
 
   def  show
     @article = Article.find(params[:id])
+    #debugger
   end
 
   def new
@@ -15,6 +16,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
 
     if @article.save
+      flash[:success] = "Created article"
       redirect_to @article
     else
       render :new

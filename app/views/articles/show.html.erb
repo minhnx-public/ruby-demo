@@ -12,3 +12,7 @@
 
 <h2>Add a comment:</h2>
 <%= render 'comments/form' %>
+<p>
+  <%= gravatar_for @article %>
+  <a href="https://gravatar.com/emails" target="_blank">change</a>
+</p>

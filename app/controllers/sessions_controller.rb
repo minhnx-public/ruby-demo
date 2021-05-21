@@ -31,8 +31,10 @@ class SessionsController < ApplicationController
   end
 
   def logout
-    session.delete(:user_id)
-    @current_user = nil
+    if (logged_in?)
+      session.delete(:user_id)
+      @current_user = nil
+    end
     redirect_to root_url
   end
 end

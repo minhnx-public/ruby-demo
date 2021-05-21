@@ -60,3 +60,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rexml', '~> 3.2', '>= 3.2.4'
 gem 'rails-controller-testing'
+gem 'faker', '2.1.2'
+gem 'will_paginate', '3.3.0'

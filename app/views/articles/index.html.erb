@@ -3,6 +3,8 @@
 
 Total articles: <%= Article.public_count %>
 
+<%= will_paginate %>
+
 <ul>
   <% @articles.each do |article| %>
     <% unless article.archived? %>
@@ -12,5 +14,7 @@ Total articles: <%= Article.public_count %>
     <% end %>
   <% end %>
 </ul>
+
+<%= will_paginate %>
 
 <%= link_to "new article", new_article_path %>

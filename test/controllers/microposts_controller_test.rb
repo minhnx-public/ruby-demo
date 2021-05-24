@@ -1,4 +1,5 @@
 require "test_helper"
+require "json"
 
 class MicropostsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -22,9 +23,11 @@ class MicropostsControllerTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
     assert_difference('Micropost.count') do
       post microposts_url, params: {micropost: {content: @micropost.content, user_id: @micropost.user_id}}
+      puts "inserted new microposts"
     end
 
-    assert_redirected_to micropost_url(Micropost.last)
+    puts Micropost.last.to_json
+    assert_redirected_to micropost_url(Micropost.first)
   end
 
   test "should show micropost" do

@@ -5,6 +5,8 @@ class User < ApplicationRecord
   before_save :downcase_username
   validates :username, presence: true, length: {maximum: 30}
 
+  has_many :microposts, dependent: :destroy
+
   has_secure_password
 
   def remember
@@ -33,7 +35,8 @@ class User < ApplicationRecord
   end
 
   private
-    def downcase_username
-      self.username = username.downcase
-    end
+
+  def downcase_username
+    self.username = username.downcase
+  end
 end

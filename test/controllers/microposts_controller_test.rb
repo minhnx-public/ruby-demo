@@ -3,42 +3,50 @@ require "test_helper"
 class MicropostsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @micropost = microposts(:one)
+    @user = users(:one)
   end
 
   test "should get index" do
+    log_in_as(@user)
     get microposts_url
     assert_response :success
   end
 
   test "should get new" do
+    log_in_as(@user)
     get new_micropost_url
     assert_response :success
   end
 
   test "should create micropost" do
+    log_in_as(@user)
     assert_difference('Micropost.count') do
-      post microposts_url, params: { micropost: { content: @micropost.content, userId: @micropost.userId } }
+      post microposts_url, params: {micropost: {content: @micropost.content, user_id: @micropost.user_id}}
     end
 
     assert_redirected_to micropost_url(Micropost.last)
   end
 
   test "should show micropost" do
+    log_in_as(@user)
     get micropost_url(@micropost)
     assert_response :success
   end
 
   test "should get edit" do
+    log_in_as(@user)
     get edit_micropost_url(@micropost)
     assert_response :success
   end
 
   test "should update micropost" do
-    patch micropost_url(@micropost), params: { micropost: { content: @micropost.content, userId: @micropost.userId } }
+    log_in_as(@user)
+    patch micropost_url(@micropost), params: {micropost: {content: @micropost.content, user_id: @micropost.user_id}}
     assert_redirected_to micropost_url(@micropost)
   end
 
   test "should destroy micropost" do
+    log_in_as(@user)
     assert_difference('Micropost.count', -1) do
       delete micropost_url(@micropost)
     end

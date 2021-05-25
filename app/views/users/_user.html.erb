@@ -1,0 +1,20 @@
+<h1>User detail</h1>
+<p><%= link_to gravatar_for(@user, size: 50) %></p>
+<p><%= @user.username %></p>
+<p><%= @user.created_at %></p>
+
+<% if @user.microposts.any? %>
+  <h2>Microposts</h2>
+  <p>Total: <%= @user.microposts.count %></p>
+  <% @user.microposts.each do |micropost| %>
+
+    <li id="micropost-<%= micropost.id %>">
+      <%= link_to gravatar_for(micropost.user, size: 50) %>
+      <!--      <span class="user"><%#= link_to micropost.username, micropost.user %></span>-->
+      <span class="content"><%= micropost.content %></span>
+      <span class="timestamp">
+        Posted <%= time_ago_in_words(micropost.created_at) %>
+      </span>
+    </li>
+  <% end %>
+<% end %>

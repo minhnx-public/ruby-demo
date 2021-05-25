@@ -19,6 +19,9 @@
     <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
   </div>
   <div>
+    <%= form.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
+  </div>
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

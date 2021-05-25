@@ -2,7 +2,7 @@ require "json"
 
 class UsersController < ApplicationController
 
-  skip_before_action :authorized, only: [:new, :create, :index, :show]
+  skip_before_action :authorized, only: [:new]
 
   def index
     puts "-------- viewing users --------"

@@ -1,8 +1,10 @@
 <h1>Articles#index</h1>
 <p>Find me in app/views/articles/index.html.erb</p>
 <ul>
+  <p><%= @article.id %></p>
   <p><%= @article.title %></p>
   <p><%= @article.body %></p>
+  <p><%= image_tag @article.display_image if @article.image.attached? %></p>
 </ul>
 <%= link_to "edit", edit_article_path(@article) %>
 <%= link_to "delete", article_path(@article), method: :delete, data: {confirm: "are you sure?"} %>
@@ -13,6 +15,6 @@
 <h2>Add a comment:</h2>
 <%= render 'comments/form' %>
 <p>
-  <%= gravatar_for @article %>
+  <%= gravatar_for_article @article %>
   <a href="https://gravatar.com/emails" target="_blank">change</a>
 </p>

@@ -1,4 +1,9 @@
+require 'json'
+
 class ArticlesController < ApplicationController
+
+  helper ArticlesHelper
+
   def index
     @articles = Article.paginate(page: params[:page])
   end
@@ -14,6 +19,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.image.attach(param[:image])
 
     if @article.save
       flash[:success] = "Created article"
@@ -30,7 +36,9 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
 
+    puts article_params.to_json
     if @article.update(article_params)
+      puts "new data: " + @article.to_json
       redirect_to @article
     else
       render :edit
@@ -46,6 +54,6 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-      params.require(:article).permit(:title, :body, :status)
+      params.require(:article).permit(:title, :body, :status, :image)
     end
 end
